@@ -1,3 +1,3 @@
-module github.com/simonbusstra/gonotify/v1
+module github.com/simonbusstra/gonotify
 
 go 1.12
