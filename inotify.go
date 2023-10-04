@@ -54,7 +54,7 @@ func (i *Inotify) AddWatch(pathName string, mask uint32) (uint32, error) {
 	w, err := syscall.InotifyAddWatch(i.fd, pathName, mask)
 
 	if err != nil {
-		return nil, err
+		return 0, err
 	}
 
 	i.m.Lock()
