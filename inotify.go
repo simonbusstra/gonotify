@@ -50,7 +50,7 @@ func NewInotify(ctx context.Context) (*Inotify, error) {
 }
 
 // AddWatch adds given path to list of watched files / folders
-func (i *Inotify) AddWatch(pathName string, mask uint32) (int, error) {
+func (i *Inotify) AddWatch(pathName string, mask uint32) (uint32, error) {
 	w, err := syscall.InotifyAddWatch(i.fd, pathName, mask)
 
 	if err != nil {
@@ -61,7 +61,7 @@ func (i *Inotify) AddWatch(pathName string, mask uint32) (int, error) {
 	i.watches[pathName] = uint32(w)
 	i.rwatches[uint32(w)] = pathName
 	i.m.Unlock()
-	return w, nil
+	return uint32(w), nil
 }
 
 // RmWd removes watch by watch descriptor
